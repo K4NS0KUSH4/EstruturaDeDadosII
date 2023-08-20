@@ -23,6 +23,10 @@ public class ContaPoupanca extends ContaBancaria {
         this.diaDeVencimento = diaDeVencimentoArg;
     }
 
+    public void calcularNovoSaldo(float taxaRendimento) {
+        super.setSaldo(super.getSaldo() * taxaRendimento);
+    }
+
     @Override
     public String toString() {
         return super.toString() + " | Dia de Vencimento: " + diaDeVencimento;
