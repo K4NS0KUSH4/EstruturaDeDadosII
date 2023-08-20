@@ -58,6 +58,6 @@ public class ContaBancaria {
     @Override
     public String toString() {
         return "Nome: " + cliente + " | Número: " + nroConta +
-        " | Saldo: R$" + saldo + ";";
+        " | Saldo: R$" + saldo;
     }
 }
