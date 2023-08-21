@@ -25,10 +25,12 @@ public class ContaEspecial extends ContaBancaria {
 
     @Override
     public void sacar(float valor) {
-        if(super.getSaldo() - valor < super.getSaldo() - limite) {
+        if(super.getSaldo() - valor < super.getSaldo() + limite) {
             System.out.println("Não é possível realizar a operação.\nO saldo limite é insuficiente.");
         } else {
             super.setSaldo(super.getSaldo() - valor);
+            limite = super.getSaldo() + limite - valor;
+            System.out.println("Foram sacados R$" + valor + ".\nSaldo atual: R$" + super.getSaldo());
         }
     }
 
