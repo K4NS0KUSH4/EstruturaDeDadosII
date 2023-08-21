@@ -39,20 +39,20 @@ public class ContaBancaria {
 
     public void sacar(float valor) {
         if(saldo < 0) {
-            System.out.println("Não é possível realizar a operação.\nO saldo atual da conta é negativo.");
+            System.out.println("Não é possível realizar a operação\nO saldo atual da conta é insuficiente");
         } else {
             if(saldo - valor < 0) {
-                System.out.println("Não é possível realizar a operação.\nO saldo da conta após a operação é negativo.");
+                System.out.println("Não é possível realizar a operação\nO saldo da conta após a operação é negativo");
             } else {
                 saldo -= valor;
-                System.out.println("Foram sacados R$" + valor + ".\nSaldo atual: R$" + saldo);
+                System.out.println("Foram sacados R$" + valor + "\nSaldo atual: R$" + saldo);
             }
         }
     }
 
     public void depositar(float valor) {
         saldo += valor;
-        System.out.println("Foram depositados R$" + valor + ".\nSaldo atual: R$" + saldo);
+        System.out.println("Foram depositados R$" + valor + "\nSaldo atual: R$" + saldo);
     }
 
     @Override

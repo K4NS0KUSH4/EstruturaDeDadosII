@@ -24,7 +24,7 @@ public class ContaPoupanca extends ContaBancaria {
     }
 
     public void calcularNovoSaldo(float taxaRendimento) {
-        float novoSaldo = super.getSaldo() * (taxaRendimento/100);
+        float novoSaldo = super.getSaldo() + super.getSaldo() * (taxaRendimento/100);
         super.setSaldo(novoSaldo);
         System.out.println("Novo saldo: R$" + novoSaldo);
     }
