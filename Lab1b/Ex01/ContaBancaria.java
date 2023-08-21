@@ -4,7 +4,7 @@ public class ContaBancaria {
     private float saldo;
 
     public ContaBancaria() {
-        this("\0", 0, 0.0f);
+        this("\0", 0, 0.00f);
     }
 
     public ContaBancaria(String clienteArg, int nroContaArg, float saldoArg) {

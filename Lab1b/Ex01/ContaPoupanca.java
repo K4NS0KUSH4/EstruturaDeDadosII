@@ -6,7 +6,7 @@ public class ContaPoupanca extends ContaBancaria {
     }
 
     public ContaPoupanca(int diaDeVencimentoArg) {
-        super("\0", 0, 0.0f);
+        super("\0", 0, 0.00f);
         this.diaDeVencimento = diaDeVencimentoArg;
     }
 
@@ -26,7 +26,7 @@ public class ContaPoupanca extends ContaBancaria {
     public void calcularNovoSaldo(float taxaRendimento) {
         float novoSaldo = super.getSaldo() * (taxaRendimento/100);
         super.setSaldo(novoSaldo);
-        System.out.println("Novo saldo: " + novoSaldo);
+        System.out.println("Novo saldo: R$" + novoSaldo);
     }
 
     @Override
