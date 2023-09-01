@@ -1,14 +1,13 @@
-
 public class CarroDePasseio extends VeiculoTerrestre {
     private int totalDePassageiros;
-    
-    public CarroDePasseio(){
-        super(0,"");
+
+    public CarroDePasseio() {
+        super(0, "");
         this.totalDePassageiros = 0;
     }
-    
-     public CarroDePasseio(int ano,String cor,int totalDePassageiros){
-        super(ano,cor);
+
+    public CarroDePasseio(int ano, String cor, int totalDePassageiros) {
+        super(ano, cor);
         this.totalDePassageiros = totalDePassageiros;
     }
 
@@ -19,11 +18,9 @@ public class CarroDePasseio extends VeiculoTerrestre {
     public void setTotalDePassageiros(int totalDePassageiros) {
         this.totalDePassageiros = totalDePassageiros;
     }
-     
-     @Override
-     public String toString(){
-         return "Carro de passeio: " + super.toString() + "  |  Total de Passageiros " + totalDePassageiros;
-         
-     }
- 
+
+    @Override
+    public String toString() {
+        return "Carro de passeio: " + super.toString() + " | Total de Passageiros: " + totalDePassageiros;
+    }
 }

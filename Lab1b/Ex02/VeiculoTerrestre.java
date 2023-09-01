@@ -1,15 +1,14 @@
-
 public class VeiculoTerrestre {
-   private int ano;
-   private String cor;
-   
-    private VeiculoTerrestre(){//Voce bloquia ,ou seja voce tem que usar o construtor que esta pulico
+    private int ano;
+    private String cor;
+
+    protected VeiculoTerrestre() { // Acesso permitido apenas a esta classe e suas subclasses
         this(0, "");
-    }   
-    
-    public VeiculoTerrestre(int ano,String cor){
-       this.ano = ano;
-       this.cor = cor;  
+    }
+
+    public VeiculoTerrestre(int ano, String cor) {
+        this.ano = ano;
+        this.cor = cor;
     }
 
     public int getAno() {
@@ -28,10 +27,8 @@ public class VeiculoTerrestre {
         this.cor = cor;
     }
 
-
     @Override
-    public String toString(){
-        return  " cor: " +  cor + " ano: " + ano;
+    public String toString() {
+        return "Ano: " + ano + " | Cor: " + cor;
     }
-    
 }
