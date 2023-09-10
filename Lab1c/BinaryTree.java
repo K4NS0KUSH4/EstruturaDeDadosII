@@ -55,53 +55,74 @@ public class BinaryTree {
         return (leftLevel > rightLevel) ? 1 + leftLevel : 1 + rightLevel;
     }
 
-    // Esquerda -> No -> Direita
-    public void inOrderTraversal(Node root) {
-        Node head = root;
-        if (head == null) {
-            System.out.println("Null");
+    // Left >>> Node >>> Right
+    public void inOrderTraversal() {
+        if(isEmpty()) {
+            return;
         }
-        if (head.getLeft() != null) {
-            inOrderTraversal(head.getLeft());
+
+        Node root = this.root;
+
+        if(root.getLeft() != null) {
+            BinaryTree leftTree = new BinaryTree(root.getLeft());
+            leftTree.inOrderTraversal();
         }
-        System.out.print(head.getData() + " ");
-        if (head.getRight() != null) {
-            inOrderTraversal(head.getRight());
+
+        System.out.print(root.getData() + " ");
+
+        if(root.getRight() != null) {
+            BinaryTree rightTree = new BinaryTree(root.getRight());
+            rightTree.inOrderTraversal();
         }
     }
 
-    // No -> esquerda -> Direita
-    public void preOrderTraversal(Node root) {
-        Node head = root;
-        if (head == null) {
-            System.out.println("Null");
+    // Node >>> Left >>> Right
+    public void preOrderTraversal() {
+        if(isEmpty()) {
+            return;
         }
-        System.out.print(head.getData() + " ");
-        if (head.getLeft() != null) {
-            preOrderTraversal(head.getLeft());
+
+        Node root = this.root;
+        System.out.print(root.getData() + " ");
+
+        if(root.getLeft() != null) {
+            BinaryTree leftTree = new BinaryTree(root.getLeft());
+            leftTree.preOrderTraversal();
         }
-        if (head.getRight() != null) {
-            preOrderTraversal(head.getRight());
+
+        if(root.getRight() != null) {
+            BinaryTree rightTree = new BinaryTree(root.getRight());
+            rightTree.preOrderTraversal();
         }
     }
 
-    // Esquerda -> Direita -> No
-    public void postOrderTraversal(Node root) {
-        Node head = root;
-        if (head.getLeft() != null) {
-            postOrderTraversal(head.getLeft());
+    // Left >>> Right >>> Node
+    public void postOrderTraversal() {
+        if(isEmpty()) {
+            return;
         }
-        if (head.getRight() != null) {
-            postOrderTraversal(head.getRight());
+
+        Node root = this.root;
+
+        if(root.getLeft() != null) {
+            BinaryTree leftTree = new BinaryTree(root.getLeft());
+            leftTree.postOrderTraversal();
         }
-        System.out.print(head.getData() + " ");
+        
+        if(root.getRight() != null) {
+            BinaryTree rightTree = new BinaryTree(root.getRight());
+            rightTree.postOrderTraversal();
+        }
+        
+        System.out.print(root.getData() + " ");
     }
 
     public void levelOrderTraversal(Node root) {
         Node head = root;
         Queue<Node> fila = new LinkedList<>();
         fila.add(head);
-        while (!fila.isEmpty()) {
+
+        while(!fila.isEmpty()) {
             head = fila.remove();
             System.out.print(head.getData() + " ");
             if (head.getLeft() != null) {
@@ -112,5 +133,4 @@ public class BinaryTree {
             }
         }
     }
-
 }
