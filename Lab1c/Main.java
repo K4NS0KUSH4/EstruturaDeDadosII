@@ -7,7 +7,7 @@ public class Main {
            Node D = new Node("D",B);
            Node E = new Node("E",C);
            Node F = new Node( "F",C);
-           arvore.setRaiz(A);
+           arvore.setRoot(A);
            B.setParent(A);
            A.setLeft(B);
            A.setRight(C);
@@ -27,7 +27,7 @@ public class Main {
            
            System.out.println("\n=-=-=-=-INFORMACOES SOBRE A ARVORE-=-=-=- ");
            System.out.println("A arvore esta vazia? " + arvore.isEmpty());
-           System.out.println("Altura da arvore: " + arvore.getHeight(A));
+           System.out.println("Altura da arvore: " + arvore.getHeight());
            System.out.println("Grau da arvore: " +  arvore.getDegree());
            System.out.print("Percurso em ordem: " );
            arvore.inOrderTraversal(A);
