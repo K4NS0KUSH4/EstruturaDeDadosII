@@ -3,9 +3,6 @@
  * NOME: Pedro Henrique Araujo Farias   TIA: 32246994
 */
 
-import java.util.Queue;
-import java.util.LinkedList;
-
 public class BinaryTree {
     private Node root;
 
@@ -115,22 +112,5 @@ public class BinaryTree {
         }
         
         System.out.print(root.getData() + " ");
-    }
-
-    public void levelOrderTraversal(Node root) {
-        Node head = root;
-        Queue<Node> fila = new LinkedList<>();
-        fila.add(head);
-
-        while(!fila.isEmpty()) {
-            head = fila.remove();
-            System.out.print(head.getData() + " ");
-            if (head.getLeft() != null) {
-                fila.add(head.getLeft());
-            }
-            if (head.getRight() != null) {
-                fila.add(head.getRight());
-            }
-        }
     }
 }

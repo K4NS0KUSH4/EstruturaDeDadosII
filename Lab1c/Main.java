@@ -37,8 +37,6 @@ public class Main {
            arvore.postOrderTraversal();
            System.out.print("\nPercurso em Pré-ordem: " );
            arvore.preOrderTraversal();
-           System.out.print("\nPercurso em nível: ");
-           arvore.levelOrderTraversal(A);
     }
 }
 
