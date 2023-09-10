@@ -6,10 +6,7 @@ public class Node {
     private Node right;
 
     public Node() {
-        this.data = null;
-        this.parent = null;
-        this.left = null;
-        this.right = null;
+        this(null, null);
     }
 
     public Node(String data) {
@@ -59,25 +56,25 @@ public class Node {
     }
 
     public boolean isRoot() {
-        return (this.left != null || this.right != null);
+        return (this.parent == null);
     }
 
     public boolean isLeaf() {
         return (this.left == null || this.right == null);
     }
 
-    // getDegree() Retorna o grau do nó (int)Numero de filhos
     public int getDegree() {
         if (this.left == null && this.right == null) {
             return 0;
         }
+
         if (this.left != null && this.right == null || this.left == null && this.right != null) {
             return 1;
         }
+
         return 2;
     }
 
-    // Arrumar
     public int getLevel(Node raiz) {
         Node head = this;
         int contador = 0;
