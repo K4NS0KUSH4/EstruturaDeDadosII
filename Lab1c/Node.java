@@ -1,3 +1,8 @@
+/* COMPONENTES DO GRUPO 
+ * NOME: Jonatas Garcia de Oliveira     TIA: 42181232
+ * NOME: Pedro Henrique Araujo Farias   TIA: 32246994
+*/
+
 public class Node {
 
     private String data;
@@ -60,7 +65,7 @@ public class Node {
     }
 
     public boolean isLeaf() {
-        return (this.left == null || this.right == null);
+        return (this.left == null && this.right == null);
     }
 
     public int getDegree() {
@@ -75,41 +80,31 @@ public class Node {
         return 2;
     }
 
-    public int getLevel(Node raiz) {
-        Node head = this;
-        int contador = 0;
-        while (head != raiz) {
-            if (head.getParent() != null) {
-                head = head.getParent();
-                ++contador;
-            }
+    public int getLevel() {
+        if(isRoot()) {
+            return 0;
         }
-        return contador;
+
+        return 1 + getParent().getLevel();
     }
 
-    public int getHeight(Node elemento) {
-        if (elemento == null) {
-            return -1;
+    public int getHeight() {
+        if(isLeaf()) {
+            return 0;
         }
-        int h_left = 0;
-        int h_right = 0;
-        if (elemento.getLeft() != null) {
-            h_left = getHeight(elemento.getLeft());
-        }
-        if (elemento.getRight() != null) {
-            h_right = getHeight(elemento.getLeft());
-        }
-        if (h_left > h_right) {
-            return h_left + 1;
-        }
-        return h_right + 1;
+
+        int leftHeight = (getLeft() != null) ? getLeft().getHeight() : 0;
+        int rightHeight = (getRight() != null) ? getRight().getHeight() : 0;
+        int greater = (leftHeight > rightHeight) ? leftHeight : rightHeight;
+        
+        return 1 + greater;
     }
 
     @Override
     public String toString() {
-        return " | " + data + " | " +
-                "\n | " + (left != null ? left.getData() : null) + " | " +
-                " |  " + (right != null ? right.getData() : null) + " | ";
+        return " L\t[" + data + "]\t R" +
+                "\n[" + (left != null ? left.getData() : " ") + "]" +
+                "\t\t[" + (right != null ? right.getData() : " ") + "]";
     }
 
 }
