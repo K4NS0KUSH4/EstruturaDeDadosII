@@ -32,11 +32,11 @@ public class Main {
            System.out.println("Altura da árvore: " + arvore.getHeight());
            System.out.println("Grau da árvore: " +  arvore.getDegree());
            System.out.print("Percurso em ordem: " );
-           arvore.inOrderTraversal();
+           arvore.inOrderTraversal(arvore.getRoot());
            System.out.print("\nPercurso em Pós-ordem: " );
-           arvore.postOrderTraversal();
+           arvore.postOrderTraversal(arvore.getRoot());
            System.out.print("\nPercurso em Pré-ordem: " );
-           arvore.preOrderTraversal();
+           arvore.preOrderTraversal(arvore.getRoot());
     }
 }
 

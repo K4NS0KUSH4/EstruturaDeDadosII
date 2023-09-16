@@ -53,62 +53,51 @@ public class BinaryTree {
     }
 
     // Left >>> Node >>> Right
-    public void inOrderTraversal() {
+    public void inOrderTraversal(Node root) {
         if(isEmpty()) {
             return;
         }
 
-        Node root = this.root;
-
         if(root.getLeft() != null) {
-            BinaryTree leftTree = new BinaryTree(root.getLeft());
-            leftTree.inOrderTraversal();
+            inOrderTraversal(root.getLeft());
         }
 
         System.out.print(root.getData() + " ");
 
         if(root.getRight() != null) {
-            BinaryTree rightTree = new BinaryTree(root.getRight());
-            rightTree.inOrderTraversal();
+            inOrderTraversal(root.getRight());
         }
     }
 
     // Node >>> Left >>> Right
-    public void preOrderTraversal() {
+    public void preOrderTraversal(Node root) {
         if(isEmpty()) {
             return;
         }
 
-        Node root = this.root;
         System.out.print(root.getData() + " ");
 
         if(root.getLeft() != null) {
-            BinaryTree leftTree = new BinaryTree(root.getLeft());
-            leftTree.preOrderTraversal();
+            preOrderTraversal(root.getLeft());
         }
 
         if(root.getRight() != null) {
-            BinaryTree rightTree = new BinaryTree(root.getRight());
-            rightTree.preOrderTraversal();
+            preOrderTraversal(root.getRight());
         }
     }
 
     // Left >>> Right >>> Node
-    public void postOrderTraversal() {
+    public void postOrderTraversal(Node root) {
         if(isEmpty()) {
             return;
         }
 
-        Node root = this.root;
-
         if(root.getLeft() != null) {
-            BinaryTree leftTree = new BinaryTree(root.getLeft());
-            leftTree.postOrderTraversal();
+            postOrderTraversal(root.getLeft());
         }
         
         if(root.getRight() != null) {
-            BinaryTree rightTree = new BinaryTree(root.getRight());
-            rightTree.postOrderTraversal();
+            postOrderTraversal(root.getRight());
         }
         
         System.out.print(root.getData() + " ");
