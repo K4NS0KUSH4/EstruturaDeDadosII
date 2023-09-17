@@ -14,32 +14,26 @@ public class BST extends BinaryTree {
     }
 
     public Node search(String data, Node root) {
-        if(root != null) {
-            
-            if(root.getData().compareTo(data) == 0) {
-                return root;
-            }
-
-            else if(root.getData().compareTo(data) > 0) {
-                return search(data, root.getLeft());
-            }
-
-            else if(root.getData().compareTo(data) < 0) {
-                return search(data, root.getRight());
-            }
+        if(root == null) {
+            return null;
         }
 
-        return null;
+        else if(root.getData().compareTo(data) == 0) {
+            return root;
+        }
+
+        else if(root.getData().compareTo(data) > 0) {
+            return search(data, root.getLeft());
+        }
+
+        else {
+            return search(data, root.getRight());
+        }
     }
 
     public Node insert(String data, Node root, Node parent) {
-        if(search(data, root) != null) {
-            throw new RuntimeException("Nodo de chave " + data + " já inserido na árvore.");
-        }
-
         if(root == null) {
             root = new Node(data, parent);
-            return root;
         }
 
         else if(root.getData().compareTo(data) > 0) {
@@ -50,19 +44,33 @@ public class BST extends BinaryTree {
             root.setRight(insert(data, root.getRight(), root));
         }
 
+        else {
+            throw new RuntimeException("Nodo de chave " + data + " já existente.");
+        }
+
         return root;
     }
 
     private Node removeNode(Node root) {
         if(root.isLeaf()) {
+            if(root.isRoot()) {
+                setRoot(null);
+            }
+
             root = null;
         }
 
         else if(root.getLeft() == null) {
+            if(root.isRoot()) {
+                setRoot(findSucessor(root.getData()));
+            }
             root = root.getRight();
         }
 
         else if(root.getRight() == null) {
+            if(root.isRoot()) {
+                setRoot(findPredecessor(root.getData()));
+            }
             root = root.getLeft();
         }
 
@@ -71,7 +79,7 @@ public class BST extends BinaryTree {
             root.setData(predecessor.getData());
             root.setLeft(remove(predecessor.getData(), root.getLeft()));
         }
-
+        
         return root;
     }
 
@@ -159,8 +167,33 @@ public class BST extends BinaryTree {
         return wanted;
     }
 
-    public void clear() {
-        
+    private void inOrderInfo(Node root) {
+        if(isEmpty()) {
+            return;
+        }
+
+        if(root.getLeft() != null) {
+            inOrderInfo(root.getLeft());
+        }
+
+        System.out.println("| Chave: " + root.getData() + "; Parent: " + (root.getParent() == null ? null : root.getParent().getData()) + "; Left: " +
+            (root.getLeft() == null ? null : root.getLeft().getData()) + "; Right: " + (root.getRight() == null ? null : root.getRight().getData()) + 
+            "; É raiz? " + root.isRoot() + "; É folha? " + root.isLeaf() + "; Grau: " + root.getDegree() + "; Nível: " +
+            root.getLevel() + "; Altura: " + root.getHeight() + " |");
+
+        if(root.getRight() != null) {
+            inOrderInfo(root.getRight());
+        }
+    }
+
+    public void treeOrderInfo(Node root) {
+        inOrderInfo(root);
+    }
+
+    public void clear(Node root) {
+        while(!isEmpty()) {
+            remove(root.getData(), root);
+        }
     }
 
 }

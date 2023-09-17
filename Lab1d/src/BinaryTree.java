@@ -46,8 +46,8 @@ public class BinaryTree {
             return 0;
         }
 
-        int leftLevel = (root.getLeft() != null) ? root.getLeft().getLevel() : 0;
-        int rightLevel = (root.getRight() != null) ? root.getRight().getLevel() : 0;
+        int leftLevel = (root.getLeft() != null) ? root.getLeft().getHeight() : 0;
+        int rightLevel = (root.getRight() != null) ? root.getRight().getHeight() : 0;
 
         return (leftLevel > rightLevel) ? 1 + leftLevel : 1 + rightLevel;
     }
