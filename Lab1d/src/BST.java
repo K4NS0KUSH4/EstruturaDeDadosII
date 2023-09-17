@@ -13,20 +13,41 @@ public class BST extends BinaryTree {
         super(root);
     }
 
-    public Node search(Node rootBST, String data) {
-        if(rootBST == null) {
+    public Node search(String data, Node root) {
+        if(root == null) {
             return null;
         }
 
-        if(rootBST.getData().compareTo(data) < 0) {
-            return search(rootBST.getRight(), data);
+        if(root.getData().compareTo(data) < 0) {
+            return search(data, root.getRight());
         }
 
-        if(rootBST.getData().compareTo(data) > 0) {
-            return search(rootBST.getLeft(), data);
+        if(root.getData().compareTo(data) > 0) {
+            return search(data, root.getLeft());
         }
 
-        return rootBST;
+        return root;
+    }
+
+    public Node insert(String data, Node root, Node parent) {
+        if(root != null) {
+
+            if(search(data, root) != null) {
+                throw new RuntimeException("Nodo já existente na árvore.");
+            }
+
+            if(root.getData().compareTo(data) > 0) {
+                root.setLeft(insert(data, root.getLeft(), root));
+            }
+
+            else if(root.getData().compareTo(data) < 0) {
+                root.setRight(insert(data, root.getRight(), root));
+            }
+
+        }
+
+        Node newNode = new Node(data, parent);
+        return newNode;
     }
 
 }
