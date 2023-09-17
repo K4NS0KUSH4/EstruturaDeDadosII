@@ -14,40 +14,22 @@ public class BST extends BinaryTree {
     }
 
     public Node search(String data, Node root) {
-        if(root == null) {
-            return null;
-        }
-
-        if(root.getData().compareTo(data) < 0) {
-            return search(data, root.getRight());
-        }
-
-        if(root.getData().compareTo(data) > 0) {
-            return search(data, root.getLeft());
-        }
-
-        return root;
-    }
-
-    public Node insert(String data, Node root, Node parent) {
         if(root != null) {
-
-            if(search(data, root) != null) {
-                throw new RuntimeException("Nodo já existente na árvore.");
+            
+            if(root.getData().compareTo(data) == 0) {
+                return root;
             }
 
-            if(root.getData().compareTo(data) > 0) {
-                root.setLeft(insert(data, root.getLeft(), root));
+            else if(root.getData().compareTo(data) > 0) {
+                return search(data, root.getLeft());
             }
 
             else if(root.getData().compareTo(data) < 0) {
-                root.setRight(insert(data, root.getRight(), root));
+                return search(data, root.getRight());
             }
-
         }
 
-        Node newNode = new Node(data, parent);
-        return newNode;
+        return null;
     }
 
     public Node findMin(Node root) {

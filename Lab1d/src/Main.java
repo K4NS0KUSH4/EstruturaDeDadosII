@@ -5,12 +5,20 @@
 
 public class Main {
     public static void main(String[] args) {
-        Node nodeA = new Node("A", null);
-        BST bstree = new BST(nodeA);
-        System.out.println(bstree.search("A", nodeA));
-        System.out.println(bstree.insert("B", nodeA, null));
-        System.out.println(nodeA);
-        bstree.inOrderTraversal(nodeA);
-        bstree.postOrderTraversal(nodeA);
+        Node nodeD = new Node("D");
+        BST bstree = new BST(nodeD);
+        Node nodeB = new Node("B", nodeD);
+        nodeD.setLeft(nodeB);
+        Node nodeA = new Node("A", nodeB);
+        nodeB.setLeft(nodeA);
+        Node nodeC = new Node("C", nodeB);
+        nodeB.setRight(nodeC);
+        Node nodeF = new Node("F", nodeD);
+        nodeD.setRight(nodeF);
+        Node nodeE = new Node("E", nodeF);
+        nodeF.setLeft(nodeE);
+        Node nodeG = new Node("G", nodeF);
+        nodeF.setRight(nodeG);
+        System.out.println(bstree.findSucessor("A"));
     }
 }
