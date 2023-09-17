@@ -27,15 +27,20 @@ public static void printBSTreeInfo(BST tree) {
         System.out.println("Iniciando testes para validação da implementação da BSTree.");
         BST bstree = new BST();
         printBSTreeInfo(bstree);
-        
+
         System.out.println("\nCriando nodo de chave 30 (String) e definindo-o como raiz da BST");
         Node node30 = new Node("30", null);
         bstree.setRoot(node30);
         printNodeInfo(node30);
-
+        
         System.out.println("Guardando referência do nodo raiz em binSearchRoot");
         Node binSearchRoot = bstree.getRoot();
         System.out.println("binSearchRoot = " + binSearchRoot.getData());
+        
+        System.out.println("\nProcurando nodo não inserido: ");
+        if(bstree.search("88", binSearchRoot) == null) {
+            System.out.println("Nodo de chave 88 não encontrado.");
+        }
 
         System.out.println("\nInserindo nodo de chave 15");
         binSearchRoot = bstree.insert("15", binSearchRoot, null);
