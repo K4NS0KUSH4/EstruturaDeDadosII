@@ -33,6 +33,10 @@ public class BST extends BinaryTree {
     }
 
     public Node insert(String data, Node root, Node parent) {
+        if(search(data, root) != null) {
+            throw new RuntimeException("Nodo de chave " + data + " já inserido na árvore.");
+        }
+
         if(root == null) {
             root = new Node(data, parent);
             return root;
@@ -72,6 +76,10 @@ public class BST extends BinaryTree {
     }
 
     public Node remove(String data, Node root) {
+        if(search(data, root) == null) {
+            throw new RuntimeException("Nodo de chave " + data + " não encontrado.");
+        }
+
         if(root == null) {
             return null;
         }
@@ -149,6 +157,10 @@ public class BST extends BinaryTree {
         }
 
         return wanted;
+    }
+
+    public void clear() {
+        
     }
 
 }
