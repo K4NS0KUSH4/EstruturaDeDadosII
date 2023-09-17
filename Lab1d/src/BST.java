@@ -32,6 +32,23 @@ public class BST extends BinaryTree {
         return null;
     }
 
+    public Node insert(String data, Node root, Node parent) {
+        if(root == null) {
+            root = new Node(data, parent);
+            return root;
+        }
+
+        else if(root.getData().compareTo(data) > 0) {
+            root.setLeft(insert(data, root.getLeft(), root));
+        }
+
+        else if(root.getData().compareTo(data) < 0) {
+            root.setRight(insert(data, root.getRight(), root));
+        }
+
+        return root;
+    }
+
     public Node findMin(Node root) {
         if(isEmpty()) {
             return null;

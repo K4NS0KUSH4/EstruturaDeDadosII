@@ -5,20 +5,16 @@
 
 public class Main {
     public static void main(String[] args) {
-        Node nodeD = new Node("D");
-        BST bstree = new BST(nodeD);
-        Node nodeB = new Node("B", nodeD);
-        nodeD.setLeft(nodeB);
-        Node nodeA = new Node("A", nodeB);
-        nodeB.setLeft(nodeA);
-        Node nodeC = new Node("C", nodeB);
-        nodeB.setRight(nodeC);
-        Node nodeF = new Node("F", nodeD);
-        nodeD.setRight(nodeF);
-        Node nodeE = new Node("E", nodeF);
-        nodeF.setLeft(nodeE);
-        Node nodeG = new Node("G", nodeF);
-        nodeF.setRight(nodeG);
-        System.out.println(bstree.findSucessor("A"));
+        BST bstree = new BST();
+        Node Dnode = new Node("D", null);
+        bstree.setRoot(Dnode);
+        Node binSearchRoot = bstree.getRoot();
+        binSearchRoot = bstree.insert("B", binSearchRoot, null);
+        binSearchRoot = bstree.insert("C", binSearchRoot, null);
+        binSearchRoot = bstree.insert("A", binSearchRoot, null);
+        binSearchRoot = bstree.insert("E", binSearchRoot, null);
+        binSearchRoot = bstree.insert("F", binSearchRoot, null);
+        binSearchRoot = bstree.insert("G", binSearchRoot, null);
+        bstree.postOrderTraversal(binSearchRoot);
     }
 }
