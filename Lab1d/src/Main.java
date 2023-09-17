@@ -15,6 +15,11 @@ public class Main {
         binSearchRoot = bstree.insert("E", binSearchRoot, null);
         binSearchRoot = bstree.insert("F", binSearchRoot, null);
         binSearchRoot = bstree.insert("G", binSearchRoot, null);
-        bstree.postOrderTraversal(binSearchRoot);
+        bstree.inOrderTraversal(binSearchRoot);
+        System.out.println();
+        binSearchRoot = bstree.remove("D", binSearchRoot);
+        bstree.inOrderTraversal(binSearchRoot);
+        System.out.println();
+        System.out.println(bstree.search("G", binSearchRoot).getParent());
     }
 }

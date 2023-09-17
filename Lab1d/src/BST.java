@@ -49,6 +49,48 @@ public class BST extends BinaryTree {
         return root;
     }
 
+    private Node removeNode(Node root) {
+        if(root.isLeaf()) {
+            root = null;
+        }
+
+        else if(root.getLeft() == null) {
+            root = root.getRight();
+        }
+
+        else if(root.getRight() == null) {
+            root = root.getLeft();
+        }
+
+        else {
+            Node predecessor = findPredecessor(root.getData());
+            root.setData(predecessor.getData());
+            root.setLeft(remove(predecessor.getData(), root.getLeft()));
+        }
+
+        return root;
+    }
+
+    public Node remove(String data, Node root) {
+        if(root == null) {
+            return null;
+        }
+
+        else if(root.getData().compareTo(data) > 0) {
+            root.setLeft(remove(data, root.getLeft()));
+        }
+
+        else if(root.getData().compareTo(data) < 0) {
+            root.setRight(remove(data, root.getRight()));
+        }
+
+        else {
+            root = removeNode(root);
+        }
+
+        return root;
+    }
+
     public Node findMin(Node root) {
         if(isEmpty()) {
             return null;
