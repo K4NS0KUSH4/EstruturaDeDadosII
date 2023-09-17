@@ -102,21 +102,25 @@ public static void printBSTreeInfo(BST tree) {
         System.out.println("\nRemovendo nodo de chave 30 (possui subárvores esquerda e direita)");
         binSearchRoot = bstree.remove("30", binSearchRoot);
         printBSTreeInfo(bstree);
+        System.out.println();
         bstree.treeOrderInfo(binSearchRoot);
 
         System.out.println("\nRemovendo nodo de chave 08 (nodo é uma folha)");
         binSearchRoot = bstree.remove("08", binSearchRoot);
         printBSTreeInfo(bstree);
+        System.out.println();
         bstree.treeOrderInfo(binSearchRoot);
 
         System.out.println("\nRemovendo nodo de chave 38 (não possui subárvore esquerda)");
         binSearchRoot = bstree.remove("38", binSearchRoot);
         printBSTreeInfo(bstree);
+        System.out.println();
         bstree.treeOrderInfo(binSearchRoot);
 
         System.out.println("\nRemovendo nodo de chave 20 (não possui subárvore direita)");
         binSearchRoot = bstree.remove("20", binSearchRoot);
         printBSTreeInfo(bstree);
+        System.out.println();
         bstree.treeOrderInfo(binSearchRoot);
 
         System.out.println("\nValor mínimo da árvore: " + bstree.findMin(binSearchRoot).getData());
