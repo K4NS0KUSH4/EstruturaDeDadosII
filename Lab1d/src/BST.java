@@ -50,4 +50,64 @@ public class BST extends BinaryTree {
         return newNode;
     }
 
+    public Node findMin(Node root) {
+        if(isEmpty()) {
+            return null;
+        }
+
+        if(root.getLeft() == null) {
+            return root;
+        }
+
+        return findMin(root.getLeft());
+    }
+
+    public Node findMax(Node root) {
+        if(isEmpty()) {
+            return null;
+        }
+
+        if(root.getRight() == null) {
+            return root;
+        }
+
+        return findMax(root.getRight());
+    }
+
+    public Node findPredecessor(String data) {
+        Node wanted = search(data, getRoot());
+
+        if(wanted == null || wanted == findMin(getRoot())) {
+            return null;
+        }
+
+        if(wanted.getLeft() != null) {
+            return findMax(wanted.getLeft());
+        }
+
+        while(wanted.getData().compareTo(data) >= 0) {
+            wanted = wanted.getParent();
+        }
+
+        return wanted;
+    }
+
+    public Node findSucessor(String data) {
+        Node wanted = search(data, getRoot());
+
+        if(wanted == null || wanted == findMax(getRoot())) {
+            return null;
+        }
+
+        if(wanted.getRight() != null) {
+            return findMin(wanted.getRight());
+        }
+
+       while(wanted.getData().compareTo(data) <= 0) {
+            wanted = wanted.getParent();
+        }
+
+        return wanted;
+    }
+
 }
