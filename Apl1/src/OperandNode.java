@@ -9,12 +9,10 @@ public class OperandNode extends Node {
     private float operand; // Atributo da classe OperandNode
     
     // Métodos construtores
-    public OperandNode(float argOperand, Node argLeft, Node argRight, Node argParent) {
-        super(argLeft, argRight, argParent);
+    public OperandNode(float argOperand, Node argParent) {
+        super(argParent);
         this.operand = argOperand;
     }
-
-    public OperandNode(float argOperand, Node argParent) { this(argOperand, null, null, argParent); }
 
     public OperandNode(float argOperand) { this(argOperand, null); }
 
@@ -24,9 +22,14 @@ public class OperandNode extends Node {
     public float getOperand() { return this.operand; }
 
     public void setOperand(float argOperand) { this.operand = argOperand; }
+ 
+    @Override // Sobrescreve implementação do método da superclasse
+    public String toString() {
+        return "" + this.operand;
+    }
 
     // Método solicitado no enunciado da aplicação 
     @Override // Sobrescreve implementação do método da superclasse
     public float visit() { return this.operand; }
-
+    
 }

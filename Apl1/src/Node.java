@@ -12,28 +12,62 @@ public class Node {
     private Node parent;
 
     // Métodos construtores
-    public Node(Node argLeft, Node argRight, Node argParent) {
-        this.left = argLeft;
-        this.right = argRight;
+    public Node(Node argParent) {
         this.parent = argParent;
     }
-    
-    public Node(Node argParent) { this(null, null, argParent); }
 
-    public Node() { this(null, null, null); }
+    public Node() { 
+        this(null); 
+    }
 
     // Métodos Getters & Setters
-    public Node getLeft() { return this.left; }
+    public Node getLeft() { 
+        return this.left; 
+    }
 
-    public void setLeft(Node argLeft) { this.left = argLeft; }
+    public void setLeft(Node argLeft) { 
+        this.left = argLeft; 
 
-    public Node getRight() { return this.right; }
+        if(left != null) {
+            this.left.setParent(this);
+        }
+    }
 
-    public void setRight(Node argRight) { this.right = argRight; }
+    public Node getRight() { 
+        return this.right; 
+    }
 
-    public Node getParent() { return this.parent; }
+    public void setRight(Node argRight) { 
+        this.right = argRight;
+        
+        if(right != null) {
+            this.right.setParent(this);
+        }
+    }
 
-    public void setParent(Node argParent) { this.parent = argParent; }
+    public Node getParent() { 
+        return this.parent; 
+    }
+
+    public void setParent(Node argParent) { 
+        this.parent = argParent; 
+    }
+
+    public boolean isRoot() {
+        return parent == null;
+    }
+
+    public boolean isLeaf() {
+        return left == null && right == null;
+    }
+
+    public boolean hasLeftChild() {
+        return left != null;
+    }
+
+    public boolean hasRightChild() {
+        return right != null;
+    }
 
     // Método solicitado no enunciado da aplicação
     public float visit() {
