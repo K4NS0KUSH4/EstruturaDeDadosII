@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.InputMismatchException;
 
 public class Tokenizer {
-    Utilities util;
+    Utilities util = new Utilities();
     private char[] input;
     private int index;
 

@@ -1,18 +1,24 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 
 public class Main {
-
+    
     public static void printMenu() {
         System.out.println(
             "\n01. Inserir expressão aritmética (notação infixa)\n02. Criar árvore binária de expressão aritmética" +
             "\n03. Exibir árvore binária de expressão aritmética\n04. Calcular expressão\n05. Encerrar"
             );
-    }
-
+        }
+        
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        String expInput = "";
+        Utilities util = new Utilities();
+        BinaryTree binTree = new BinaryTree();
+        Scanner inputOption = new Scanner(System.in);
+        List<String> expStrings = new ArrayList<>();
+        Scanner inputExp = new Scanner(System.in);
+        String exp = "";
         boolean flag1 = true, flag2 = true;
         int option = -1;
 
@@ -23,7 +29,7 @@ public class Main {
                 System.out.print("Escolha uma opção: ");
 
                 try {
-                    option = input.nextInt();
+                    option = inputOption.nextInt();
 
                     if (option <= 0 || option >= 6) {
                         System.out.println("ERRO: Opção inválida. Insira um inteiro de 01 a 05.");
@@ -34,7 +40,7 @@ public class Main {
                     }
 
                 } catch (InputMismatchException error) {
-                    input.nextLine();
+                    inputOption.nextLine();
                     option = -1;
                     System.out.println("ERRO: Opção inválida. Tente novamente.");
                 }
@@ -44,19 +50,50 @@ public class Main {
 
             switch (option) {
                 case 1:
-                    // entrada
+                    System.out.print("\nInsira a expressão aritmética: ");
+                    exp = inputExp.nextLine();
+
+                    try {
+                        Tokenizer expToken = new Tokenizer(exp);
+                        expStrings = expToken.tokenize();
+                        System.out.println("Expressão válida!");
+                    } catch (Exception e) {
+                        System.out.println("Expressão inválida!");
+                        exp = "";
+                        expStrings = null;
+                    }
+
                     break;
 
                 case 2:
-                    // criacao
+                    System.out.println(".");
+                    List<String> postfixExp = util.infixToPostfixConversion(expStrings);
+                    System.out.println(postfixExp);
+                    binTree.buildTreePostfix(postfixExp);
+                    System.out.println(binTree.getRoot());
+                    System.out.println("Árvore criada!");
                     break;
 
                 case 3:
-                    // exibicao
+                    if(binTree.isEmpty()) {
+                        System.out.println("Árvore vazia.");
+                        continue;
+                    }
+
+                    System.out.println("Percurso em pré-ordem: ");
+                    System.out.println(binTree.preOrderTraversal(binTree.getRoot()));
+
+                    System.out.println("Percurso em ordem: ");
+                    System.out.println(binTree.inOrderTraversal(binTree.getRoot()));
+
+                    System.out.println("Percurso em pós-ordem: ");
+                    System.out.println(binTree.postOrderTraversal(binTree.getRoot()));
+
                     break;
 
                 case 4:
-                    // calculo
+                    float result = binTree.getRoot().visit();
+                    System.out.println(result);
                     break;
 
                 default:
@@ -65,6 +102,7 @@ public class Main {
             }
         }
 
-        input.close();
+        inputOption.close();
+        inputExp.close();
     }
 }

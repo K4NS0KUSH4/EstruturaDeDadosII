@@ -4,25 +4,25 @@
 */
 
 // Classe base que representa um nó que armazena o operador de subtração
-public class SubtNode extends Node {
+public class SubNode extends Node {
 
     // Atributos da classe SubtractionNode
     private float result;
     private String symbol;
 
     // Métodos construtores
-    public SubtNode(Node argParent) {
+    public SubNode(Node argParent) {
         super(argParent);
         this.symbol = "-";
     }
 
-    public SubtNode() {
+    public SubNode() {
         this(null);
     }
 
     @Override // Sobrescreve implementação do método da superclasse
     public String toString() {
-        return this.symbol;
+        return this.symbol + " ";
     }
 
     // Método solicitado no enunciado da aplicação

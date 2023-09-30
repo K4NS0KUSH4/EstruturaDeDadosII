@@ -25,7 +25,7 @@ public class OperandNode extends Node {
  
     @Override // Sobrescreve implementação do método da superclasse
     public String toString() {
-        return "" + this.operand;
+        return this.operand + " ";
     }
 
     // Método solicitado no enunciado da aplicação 

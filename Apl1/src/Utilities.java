@@ -16,15 +16,19 @@ public class Utilities {
         return count;
     }
 
-    public static boolean isOperator(String currStr) {
+    public boolean isOperator(String currStr) {
         return currStr.equals("+") || currStr.equals("*") || currStr.equals("-") || currStr.equals("/");
     }
 
-    public static boolean isOperand(String currStr) {
+    public boolean isOperand(String currStr) {
         return !(isOperator(currStr) || currStr.equals("(") || currStr.equals(")"));
     }
 
-    public static int getPriority(String argOperator) {
+    public int getPriority(String argOperator) {
+        if(!isOperator(argOperator)) {
+            return -1;
+        }
+
         if(argOperator.equals("*") || argOperator.equals("/")) {
             return 2;
         }
@@ -32,7 +36,7 @@ public class Utilities {
         return 1;
     }
     
-    public static List<String> infixToPostfixConversion(List<String> infixTokens) {
+    public List<String> infixToPostfixConversion(List<String> infixTokens) {
         List<String> postfixExp = new ArrayList<>();
         Stack<String> stack = new Stack<>();
 
@@ -41,37 +45,30 @@ public class Utilities {
                 postfixExp.add(infixTokens.get(i));
             }
 
-            if(isOperator(infixTokens.get(i))) {
-                while(!(stack.isEmpty()) && isOperator(stack.peek())) {
-                    if(getPriority(stack.peek()) >= getPriority(infixTokens.get(i))) {
-                        postfixExp.add(stack.pop());
-                    }
+            else if(isOperator(infixTokens.get(i))) {
+                while(!stack.isEmpty() && getPriority(stack.peek()) >= getPriority(infixTokens.get(i))) {
+                    postfixExp.add(stack.pop());
                 }
 
                 stack.push(infixTokens.get(i));
             }
 
-            if(infixTokens.get(i).equals("(")) {
+            else if(infixTokens.get(i).equals("(")) {
                 stack.push(infixTokens.get(i));
             }
 
-            if(infixTokens.get(i).equals(")")) {
-                while(!(stack.isEmpty())) {
-                    String removed = stack.pop();
-                    if(removed.equals("(")) {
-                        break;
-                    } else {
-                        postfixExp.add(removed);
-                    }
+            else if(infixTokens.get(i).equals(")")) {
+                String removed = stack.pop();
+                while(!removed.equals("(")) {
+                    postfixExp.add(removed);
                 }
             }
         }
 
-        while(!(stack.isEmpty())) {
+        while(!stack.isEmpty()) {
             postfixExp.add(stack.pop());
         }
 
         return postfixExp;
     }
-
 }

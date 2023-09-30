@@ -1,5 +1,9 @@
+import java.util.List;
+import java.util.Stack;
+
 public class BinaryTree {
     
+    private Utilities util = new Utilities(); 
     private Node root; // Atributos da classe BinaryTree
 
     // Métodos construtores
@@ -68,6 +72,45 @@ public class BinaryTree {
         buffer.append(argRoot.toString());
 
         return buffer.toString();
+    }
+
+    public Node createOperator(String symbol) {
+        if(symbol.equals("+")) {
+            return new SumNode();
+        }
+
+        if(symbol.equals("-")) {
+            return new SubNode();
+        }
+
+        if(symbol.equals("/")) {
+            return new DivNode();
+        }
+
+        return new MultNode();
+    }
+
+    public void buildTreePostfix(List<String> expTokens) {
+        Stack<Node> aux = new Stack<>();
+
+        for(int i = 0; i < expTokens.size(); i++) {
+            if(util.isOperand(expTokens.get(i))) {
+                OperandNode operand = new OperandNode(Float.parseFloat(expTokens.get(i)));
+                aux.push(operand);
+            }
+
+            else if(util.isOperator(expTokens.get(i))) {
+                Node operator = createOperator(expTokens.get(i));
+
+                operator.setLeft(aux.pop());
+                operator.setRight(aux.pop());
+                aux.push(operator);
+            }
+        }
+
+        if(!(aux.isEmpty())) {
+            this.root = aux.pop();
+        }
     }
 
 }
