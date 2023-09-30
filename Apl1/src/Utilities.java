@@ -61,6 +61,7 @@ public class Utilities {
                 String removed = stack.pop();
                 while(!removed.equals("(")) {
                     postfixExp.add(removed);
+                    removed = stack.pop();
                 }
             }
         }

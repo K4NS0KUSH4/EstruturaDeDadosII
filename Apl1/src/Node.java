@@ -53,22 +53,6 @@ public class Node {
         this.parent = argParent; 
     }
 
-    public boolean isRoot() {
-        return parent == null;
-    }
-
-    public boolean isLeaf() {
-        return left == null && right == null;
-    }
-
-    public boolean hasLeftChild() {
-        return left != null;
-    }
-
-    public boolean hasRightChild() {
-        return right != null;
-    }
-
     // Método solicitado no enunciado da aplicação
     public float visit() {
         return Float.NaN;

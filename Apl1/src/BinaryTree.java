@@ -102,8 +102,8 @@ public class BinaryTree {
             else if(util.isOperator(expTokens.get(i))) {
                 Node operator = createOperator(expTokens.get(i));
 
-                operator.setLeft(aux.pop());
                 operator.setRight(aux.pop());
+                operator.setLeft(aux.pop());
                 aux.push(operator);
             }
         }

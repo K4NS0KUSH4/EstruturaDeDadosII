@@ -56,6 +56,7 @@ public class Main {
                     try {
                         Tokenizer expToken = new Tokenizer(exp);
                         expStrings = expToken.tokenize();
+                        System.out.println(expStrings);
                         System.out.println("Expressão válida!");
                     } catch (Exception e) {
                         System.out.println("Expressão inválida!");
