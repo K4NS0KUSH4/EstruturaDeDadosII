@@ -1,3 +1,8 @@
+/* COMPONENTES DO GRUPO
+ * NOME: Jônatas Garcia de Oliveira     TIA: 42181232
+ * NOME: Pedro Henrique Araujo Farias   TIA: 32246994
+*/
+
 import java.util.List;
 import java.util.Stack;
 
@@ -102,8 +107,14 @@ public class BinaryTree {
             else if(util.isOperator(expTokens.get(i))) {
                 Node operator = createOperator(expTokens.get(i));
 
-                operator.setRight(aux.pop());
-                operator.setLeft(aux.pop());
+                if(!aux.isEmpty()) {
+                    operator.setRight(aux.pop());
+                }
+
+                if(!aux.isEmpty()) {
+                    operator.setLeft(aux.pop());
+                }
+
                 aux.push(operator);
             }
         }

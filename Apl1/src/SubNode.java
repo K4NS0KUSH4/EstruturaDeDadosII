@@ -28,7 +28,17 @@ public class SubNode extends Node {
     // Método solicitado no enunciado da aplicação
     @Override // Sobreescreve implementação do método da superclasse
     public float visit() {
-        this.result = this.getLeft().visit() - this.getRight().visit();
+        if(this.getLeft() != null && this.getRight() != null) {
+            this.result = this.getLeft().visit() - this.getRight().visit();
+        }
+
+        else if(this.getLeft() == null) {
+            return (-1) * this.getRight().visit();
+        }
+
+        else if(this.getRight() == null) {
+            return (-1) * this.getLeft().visit();
+        }
         return this.result;
     }
 

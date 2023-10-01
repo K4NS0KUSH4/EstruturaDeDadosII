@@ -1,3 +1,8 @@
+/* COMPONENTES DO GRUPO
+ * NOME: Jônatas Garcia de Oliveira     TIA: 42181232
+ * NOME: Pedro Henrique Araujo Farias   TIA: 32246994
+*/
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.InputMismatchException;

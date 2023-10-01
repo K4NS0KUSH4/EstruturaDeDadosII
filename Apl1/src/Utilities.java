@@ -1,3 +1,8 @@
+/* COMPONENTES DO GRUPO
+ * NOME: Jônatas Garcia de Oliveira     TIA: 42181232
+ * NOME: Pedro Henrique Araujo Farias   TIA: 32246994
+*/
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -35,7 +40,60 @@ public class Utilities {
 
         return 1;
     }
+
+    public boolean isIn(String[] argArray, String content) {
+        for(int i = 0; i < argArray.length; i++) {
+            if(argArray[i].equals(content)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean verifyBrackets(String toBeVerified) {
+        Stack<Character> stack = new Stack<>();
+        char[] array = toBeVerified.toCharArray();
+
+        for(int i = 0; i < array.length; i++) {
+            if(array[i] == ')') {
+                if(stack.isEmpty()) {
+                    return false;
+                }
+
+                stack.pop();
+            }
+
+            if(array[i] == '(') {
+                stack.push(array[i]);
+            }
+        }
+
+        if(!stack.isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
     
+    public boolean verifyOperators(List<String> toBeVerified) {
+        for(int i = 0; i < toBeVerified.size(); i++) {
+            if(isOperator(toBeVerified.get(i))) {
+                if(!toBeVerified.get(i+1).equals("(")) {
+                    if(isOperator(toBeVerified.get(i-1))) {
+                        return false;
+                    }
+                }
+
+                if(isOperator(toBeVerified.get(i+1))) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public List<String> infixToPostfixConversion(List<String> infixTokens) {
         List<String> postfixExp = new ArrayList<>();
         Stack<String> stack = new Stack<>();

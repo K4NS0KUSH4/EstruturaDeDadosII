@@ -1,3 +1,8 @@
+/* COMPONENTES DO GRUPO
+ * NOME: Jônatas Garcia de Oliveira     TIA: 42181232
+ * NOME: Pedro Henrique Araujo Farias   TIA: 32246994
+*/
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -8,7 +13,7 @@ public class Main {
     public static void printMenu() {
         System.out.println(
             "\n01. Inserir expressão aritmética (notação infixa)\n02. Criar árvore binária de expressão aritmética" +
-            "\n03. Exibir árvore binária de expressão aritmética\n04. Calcular expressão\n05. Encerrar"
+            "\n03. Exibir árvore binária de expressão aritmética\n04. Calcular expressão\n05. Encerrar\n"
             );
         }
         
@@ -26,13 +31,16 @@ public class Main {
             printMenu();
 
             while (flag2) {
+                if(!exp.equals("")) {
+                    System.out.print("Expressão atual: " + exp + "\n");
+                }
                 System.out.print("Escolha uma opção: ");
 
                 try {
                     option = inputOption.nextInt();
 
                     if (option <= 0 || option >= 6) {
-                        System.out.println("ERRO: Opção inválida. Insira um inteiro de 01 a 05.");
+                        System.out.println("\nERRO: Opção inválida. Insira um inteiro de 01 a 05.");
                         option = -1;
 
                     } else {
@@ -42,7 +50,7 @@ public class Main {
                 } catch (InputMismatchException error) {
                     inputOption.nextLine();
                     option = -1;
-                    System.out.println("ERRO: Opção inválida. Tente novamente.");
+                    System.out.println("\nERRO: Opção inválida. Tente novamente.");
                 }
             }
 
@@ -56,8 +64,18 @@ public class Main {
                     try {
                         Tokenizer expToken = new Tokenizer(exp);
                         expStrings = expToken.tokenize();
-                        System.out.println(expStrings);
-                        System.out.println("Expressão válida!");
+                        
+                        if(util.verifyBrackets(exp)) {
+                            if(util.verifyOperators(expStrings)) {
+                                System.out.println("Expressão válida!");
+                            } else {
+                                throw new Exception();
+                            }
+                            
+                        } else {
+                            throw new Exception();
+                        }
+
                     } catch (Exception e) {
                         System.out.println("Expressão inválida!");
                         exp = "";
@@ -67,38 +85,47 @@ public class Main {
                     break;
 
                 case 2:
-                    System.out.println(".");
                     List<String> postfixExp = util.infixToPostfixConversion(expStrings);
-                    System.out.println(postfixExp);
                     binTree.buildTreePostfix(postfixExp);
-                    System.out.println(binTree.getRoot());
                     System.out.println("Árvore criada!");
                     break;
 
                 case 3:
                     if(binTree.isEmpty()) {
-                        System.out.println("Árvore vazia.");
+                        System.out.println("\nÁrvore vazia.");
                         continue;
                     }
 
-                    System.out.println("Percurso em pré-ordem: ");
+                    System.out.print("\nPercurso em pré-ordem: ");
                     System.out.println(binTree.preOrderTraversal(binTree.getRoot()));
 
-                    System.out.println("Percurso em ordem: ");
+                    System.out.print("Percurso em ordem: ");
                     System.out.println(binTree.inOrderTraversal(binTree.getRoot()));
 
-                    System.out.println("Percurso em pós-ordem: ");
+                    System.out.print("Percurso em pós-ordem: ");
                     System.out.println(binTree.postOrderTraversal(binTree.getRoot()));
 
                     break;
 
                 case 4:
                     float result = binTree.getRoot().visit();
-                    System.out.println(result);
+                    
+                    if(result == Float.POSITIVE_INFINITY || result == Float.NEGATIVE_INFINITY) {
+                        System.out.println(exp + " = " + "Indefinido.");
+                    }
+
+                    else if(result == Float.NaN) {
+                        System.out.println(exp + " = " + "Indeterminado.");
+                    }
+
+                    else {
+                        System.out.println(exp + " = " + result);
+                    }
+
                     break;
 
                 default:
-                    System.out.println("Encerrando...");
+                    System.out.println("\nEncerrando...");
                     flag1 = false;
             }
         }
