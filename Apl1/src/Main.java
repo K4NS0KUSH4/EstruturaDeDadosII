@@ -3,6 +3,39 @@
  * NOME: Pedro Henrique Araujo Farias   TIA: 32246994
 */
 
+/* REFERÊNCIAS
+ * 
+ * KISHIMOTO, ANDRÉ. 
+ * Material da disciplina. Disponível na plataforma online Moodle.
+ * 
+ * HATZ, Diogo; AKINA, Leila; ALABARSE, Livia; FARIAS, Pedro.
+ * Apl1 de Estrutura de Dados I, 3° Semestre do curso de Ciência da Computação.
+ * 
+ * ORACLE 
+ * Java Documentation: Class ArrayList<E>
+ * Disponível em https://docs.oracle.com/javase/8/docs/api/java/util/List.html
+ * 
+ * ORACLE
+ * Java Documentation: Class Stack<E>
+ * Disponível em https://docs.oracle.com/javase/8/docs/api/java/util/Stack.html
+ * 
+ * ORACLE
+ * Java Documentation: Class List<E>
+ * Disponível em https://docs.oracle.com/javase/8/docs/api/java/util/List.html
+ * 
+ * DEVMEDIA
+ * Erro nextLine();
+ * Disponível em https://www.devmedia.com.br/forum/erro-usando-metodo-nextline-em-java/509349
+ * 
+ * GEEKSFORGEEKS
+ * Binary Tree Data Structure
+ * Disponível em https://www.geeksforgeeks.org/binary-tree-data-structure/
+ * 
+ * UFRGS MAT
+ * Calculando com o zero: dividindo por zero
+ * Disponível em http://www.mat.ufrgs.br/~portosil/passa7d.html#:~:text=a%20divis%C3%A3o%201%2F0%20%C3%A9,divis%C3%A3o%200%2F0%20%C3%A9%20indeterminada
+ */
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -85,14 +118,19 @@ public class Main {
                     break;
 
                 case 2:
+                    if(exp.equals("")) {
+                        System.out.println("\nÁrvore inexistente. Utilize a opção 01 para criar uma árvore de expressão algébrica.");
+                        continue;
+                    }
+
                     List<String> postfixExp = util.infixToPostfixConversion(expStrings);
                     binTree.buildTreePostfix(postfixExp);
-                    System.out.println("Árvore criada!");
+                    System.out.println("\nÁrvore criada!");
                     break;
 
                 case 3:
                     if(binTree.isEmpty()) {
-                        System.out.println("\nÁrvore vazia.");
+                        System.out.println("\nÁrvore vazia. Utilize a opção 01 para criar uma árvore de expressão algébrica.");
                         continue;
                     }
 
@@ -108,14 +146,17 @@ public class Main {
                     break;
 
                 case 4:
+                    if(binTree.isEmpty()) {
+                        System.out.println("\nÁrvore vazia. Utilize a opção 01 para criar uma árvore de expressão algébrica.");
+                        continue;
+                    }
+
+                    System.out.println();
+
                     float result = binTree.getRoot().visit();
                     
                     if(result == Float.POSITIVE_INFINITY || result == Float.NEGATIVE_INFINITY) {
                         System.out.println(exp + " = " + "Indefinido.");
-                    }
-
-                    else if(result == Float.NaN) {
-                        System.out.println(exp + " = " + "Indeterminado.");
                     }
 
                     else {
