@@ -39,6 +39,7 @@ public class SubNode extends Node {
         else if(this.getRight() == null) {
             return (-1) * this.getLeft().visit();
         }
+        
         return this.result;
     }
 
