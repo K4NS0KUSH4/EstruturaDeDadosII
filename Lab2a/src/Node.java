@@ -35,8 +35,8 @@ public class Node {
     public int getBalanceFactor() { return this.balanceFactor; }
 
     public void updateBalanceFactor() {
-        int rightHeight = (right == null ? 0 : right.getHeight());
-        int leftHeight = (left == null ? 0 : left.getHeight());
+        int rightHeight = (right == null ? 0 : 1 + right.getHeight());
+        int leftHeight = (left == null ? 0 : 1 + left.getHeight());
         balanceFactor = rightHeight - leftHeight;
     }
 
