@@ -21,4 +21,17 @@ public class AVL extends BST {
         return newRoot;
     }
 
+    public Node rotateRight(Node argRoot) {
+        Node newRoot = argRoot.getLeft();
+        Node rightChild = newRoot.getRight();
+
+        newRoot.setParent(argRoot.getParent());
+        if(newRoot.isRoot()) { setRoot(newRoot); }
+
+        newRoot.setRight(argRoot);
+        argRoot.setLeft(rightChild);
+
+        return newRoot;
+    }
+
 }
