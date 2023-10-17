@@ -67,6 +67,18 @@ public class Node {
     public boolean isRoot() { return parent == null; }
     
     public boolean isLeaf() { return getDegree() == 0; }
+
+    public boolean isLeftChild() { 
+        Node parent = getParent();
+        if(parent == null) { return false; }
+        return parent.getLeft() == this;
+    }
+
+    public boolean isRightChild() {
+        Node parent = getParent();
+        if(parent == null) { return false; }
+        return parent.getRight() == this;
+    }
     
     public int getDegree() {
         if(left == null && right == null) { return 0; }

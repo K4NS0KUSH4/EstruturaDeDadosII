@@ -8,12 +8,22 @@ public class AVL extends BST {
 
     public AVL(Node nodeArg) { super(nodeArg); }
 
-    public Node rotateLeft(Node argRoot) {
+    private Node rotateLeft(Node argRoot) {
         Node newRoot = argRoot.getRight();
         Node leftChild = newRoot.getLeft();
         
-        newRoot.setParent(argRoot.getParent());
-        if(newRoot.isRoot()) { setRoot(newRoot); }
+        if(argRoot.isRoot()) { 
+            newRoot.setParent(null);
+            setRoot(newRoot); 
+        }
+
+        else if(argRoot.isRightChild()) {
+            argRoot.getParent().setRight(newRoot);
+        }
+
+        else if(argRoot.isLeftChild()) {
+            argRoot.getParent().setLeft(newRoot);
+        }
 
         newRoot.setLeft(argRoot);
         argRoot.setRight(leftChild);
@@ -21,17 +31,53 @@ public class AVL extends BST {
         return newRoot;
     }
 
-    public Node rotateRight(Node argRoot) {
+    private Node rotateRight(Node argRoot) {
         Node newRoot = argRoot.getLeft();
         Node rightChild = newRoot.getRight();
 
-        newRoot.setParent(argRoot.getParent());
-        if(newRoot.isRoot()) { setRoot(newRoot); }
+        if(argRoot.isRoot()) { 
+            newRoot.setParent(null);
+            setRoot(newRoot); 
+        }
+
+        else if(argRoot.isRightChild()) {
+            argRoot.getParent().setRight(newRoot);
+        }
+
+        else if(argRoot.isLeftChild()) {
+            argRoot.getParent().setLeft(newRoot);
+        }
 
         newRoot.setRight(argRoot);
         argRoot.setLeft(rightChild);
 
         return newRoot;
+    }
+
+    private Node rotateLeftRight(Node argRoot) {
+        Node leftChild = argRoot.getLeft();
+        Node newRoot = leftChild.getRight();
+        
+        argRoot.setLeft(newRoot);
+        leftChild.setRight(newRoot.getLeft());
+        newRoot.setLeft(leftChild);
+
+        return rotateRight(argRoot);
+    }
+
+    private Node rotateRightLeft(Node argRoot) {
+        Node rightChild = argRoot.getRight();
+        Node newRoot = rightChild.getLeft();
+
+        argRoot.setRight(newRoot);
+        rightChild.setLeft(newRoot.getRight());
+        newRoot.setRight(rightChild);
+
+        return rotateLeft(argRoot);
+    }
+
+    public static void main(String[] args) {
+        AVL avlTree = new AVL();
     }
 
 }
