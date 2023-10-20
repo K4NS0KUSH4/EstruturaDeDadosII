@@ -76,8 +76,37 @@ public class AVL extends BST {
         return rotateLeft(argRoot);
     }
 
-    public static void main(String[] args) {
-        AVL avlTree = new AVL();
+    private void postOrderUpdateBF(Node argNode) {
+        if(argNode == null) { return; }
+        postOrderUpdateBF(argNode.getLeft());
+        postOrderUpdateBF(argNode.getRight());
+        argNode.updateBalanceFactor();
+    }
+
+    private void balanceAVL(Node argNode) {
+        if(argNode == null) { return; }
+
+        balanceAVL(argNode.getLeft());
+        balanceAVL(argNode.getRight());
+        postOrderUpdateBF(argNode);
+        
+        if(argNode.getBalanceFactor() < -1) {
+            if(argNode.getLeft().getBalanceFactor() == 1) { rotateLeftRight(argNode); }
+            else if(argNode.getLeft().getBalanceFactor() == -1) { rotateRight(argNode); }
+        }
+        
+        else if(argNode.getBalanceFactor() > 1) {
+            if(argNode.getRight().getBalanceFactor() == -1) { rotateRightLeft(argNode); }
+            else if(argNode.getRight().getBalanceFactor() == 1) { rotateLeft(argNode); }
+        }
+
+        if(argNode.getParent() != null) { postOrderUpdateBF(argNode.getParent()); }
+    }
+
+    @Override
+    public void insert(int argData) {
+        super.insert(argData);
+        balanceAVL(root);
     }
 
 }
