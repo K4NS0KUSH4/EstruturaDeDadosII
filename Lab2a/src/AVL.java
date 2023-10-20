@@ -100,7 +100,7 @@ public class AVL extends BST {
             else if(argNode.getRight().getBalanceFactor() == 1) { rotateLeft(argNode); }
         }
 
-        if(argNode.getParent() != null) { postOrderUpdateBF(argNode.getParent()); }
+        postOrderUpdateBF(argNode.getParent());
     }
 
     @Override
