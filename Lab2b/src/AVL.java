@@ -91,13 +91,13 @@ public class AVL extends BST {
         postOrderUpdateBF(argNode);
         
         if(argNode.getBalanceFactor() < -1) {
-            if(argNode.getLeft().getBalanceFactor() == 1) { rotateLeftRight(argNode); }
-            else if(argNode.getLeft().getBalanceFactor() == -1) { rotateRight(argNode); }
+            if(argNode.getLeft().getBalanceFactor() >= 0) { rotateLeftRight(argNode); }
+            else if(argNode.getLeft().getBalanceFactor() <= 0) { rotateRight(argNode); }
         }
         
         else if(argNode.getBalanceFactor() > 1) {
-            if(argNode.getRight().getBalanceFactor() == -1) { rotateRightLeft(argNode); }
-            else if(argNode.getRight().getBalanceFactor() == 1) { rotateLeft(argNode); }
+            if(argNode.getRight().getBalanceFactor() <= 0) { rotateRightLeft(argNode); }
+            else if(argNode.getRight().getBalanceFactor() >= 0) { rotateLeft(argNode); }
         }
 
         postOrderUpdateBF(argNode.getParent());
@@ -106,6 +106,12 @@ public class AVL extends BST {
     @Override
     public void insert(int argData) {
         super.insert(argData);
+        balanceAVL(root);
+    }
+
+    @Override
+    public void remove(int argData) {
+        super.remove(argData);
         balanceAVL(root);
     }
 
