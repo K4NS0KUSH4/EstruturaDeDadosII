@@ -10,7 +10,7 @@ public class HashTableChaining implements HashTable {
 
     public HashTableChaining(int argSize) {
         this.size = argSize;
-        this.table = (LinkedList<Cell>[]) new LinkedList<?>[argSize];
+        this.table = (LinkedList<Cell>[]) new LinkedList<?>[argSize]; // Não consegui arrumar esse warning =(
         for(int i = 0; i < argSize; i++) {
             table[i] = new LinkedList<Cell>();
         }
