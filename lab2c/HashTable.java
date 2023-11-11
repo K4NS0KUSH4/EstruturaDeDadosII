@@ -1,6 +1,9 @@
+/* NOME: Jônatas Garcia de Oliveira     TIA: 42181232
+ * NOME: Pedro Henrique Araujo Farias   TIA: 32246994
+ */
 
 public interface HashTable {
-    String busca(int chave);
-    String inserir(int chave,String valor);
-    boolean remover(int chave);
+    String search(int chave);
+    String insert(int chave,String valor);
+    boolean remove(int chave);
 }
